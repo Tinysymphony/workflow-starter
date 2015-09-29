@@ -1,4 +1,6 @@
 index.html
 webpack.*
 build/
+prebuild/
 lib/
+dist/

@@ -1,6 +1,6 @@
 # !/bin/sh
 export WPATH=/home/tiny/workspace/webpack-starter/
-alias webpac-starter="
+alias webpack-starter="
 cp $WPATH/webpack.* .;
 cp $WPATH/package.json .;
 cp $WPATH/gulpfile* .;

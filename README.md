@@ -26,12 +26,16 @@ touch README.md;
 
 * install all the dependencies on development
 
-> npm install
-> gulp prebuild
-> webpack
-> node server.js
+```bash
+npm install
+gulp prebuild
+webpack
+node server.js
+```
 
 * production
 
-> gulp build
-> gulp pack
+```shell
+gulp build
+gulp pack
+```

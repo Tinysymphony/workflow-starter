@@ -1,7 +1,5 @@
 //require other resources
 
-require('./basic.scss');
+require('./css/' + /^(.+\/)*.+\..+$/);
 
 require('./js/basic.js');
-
-require('./js/render.js');

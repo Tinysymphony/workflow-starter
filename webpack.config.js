@@ -1,16 +1,18 @@
 var webpack = require('webpack');
+var ExtractCssPlugin = require('extract-text-webpack-plugin');
 module.exports = {
   entry: {
     index: [
-      'webpack-dev-server/client?http://127.0.0.1:9000',
-      'webpack/hot/only-dev-server',
+      // 'webpack-dev-server/client?http://127.0.0.1:9000',
+      // 'webpack/hot/only-dev-server',
       './src/index.js'
-    ]
+    ],
+    render: './src/render.js'
   },
   output: {
-    path: __dirname + '/build',
-    publicPath: 'http://127.0.0.1:9000/build',
-    filename: '[name].bundle.js'
+    path: __dirname + '/prebuild',
+    publicPath: 'prebuild/', //'http://127.0.0.1:9000/build',
+    filename: 'js/[name].bundle.js'
   },
   module: {
     loaders: [{
@@ -19,10 +21,10 @@ module.exports = {
       loader: 'react-hot!babel'
     }, {
       test: /\.css$/,
-      loader: 'style!css!autoprefixer'
+      loader: ExtractCssPlugin.extract('style', 'css!autoprefixer')
     }, {
       test: /\.scss$/,
-      loader: 'style!css!sass'
+      loader: ExtractCssPlugin.extract('style', 'css!sass')
     }, {
       test: /\.woff$/,
       loader: 'url?limit=100000'
@@ -32,7 +34,8 @@ module.exports = {
     extensions: ['', '.js', '.jsx', '.woff', '.png', '.jpg']
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    // new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+    new ExtractCssPlugin("css/[name].bundle.css", {allChunks: true})
   ]
 };
