@@ -1,12 +1,12 @@
-# !/bin/sh
-export WPATH=/home/tiny/workspace/webpack-starter/
+export StarterPath=$(pwd);
 alias webpack-starter="
-cp $WPATH/webpack.* .;
-cp $WPATH/package.json .;
-cp $WPATH/gulpfile* .;
-cp $WPATH/.gitignore .;
-cp $WPATH/.npmignore .;
+cp $StarterPath/webpack* .;
+cp $StarterPath/package.json .;
+cp $StarterPath/gulpfile* .;
+cp $StarterPath/.gitignore .;
+cp $StarterPath/.npmignore .;
+cp $StarterPath/README.md .;
 cp -r $PATH/src .;
-touch README.md;
+mkdir build prebuild;
 git init;
 "

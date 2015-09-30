@@ -1,10 +1,44 @@
 
-body {
+/* defination of basic colors */
+$back: #E7E5E3;
+$red:  #CC3343;
+
+@import url("article/article.scss");
+@import url("button/button.scss");
+
+html, body, div, header, footer, h1, h2, h3 ,h4, p, section{
   padding: 0;
   margin: 0;
-  font-size: 100%;
 }
 
-ul {
-  list-style-type: none;
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  ul {
+    list-style-type: none;
+  }
+  a {
+    color: #333;
+    text-decoration: none !important;
+  }
+  background-color: $back;
+}
+
+
+#main {
+  min-height: 300px;
+  width: 100%;
+  h1{
+    text-align: center;
+    margin-top: 100px;
+    font-size: 3em;
+  }
+  p {
+    text-align: center;
+    margin-top: 50px;
+    a {
+      text-decoration: none;
+    }
+  }
 }

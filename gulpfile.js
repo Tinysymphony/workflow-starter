@@ -1,16 +1,19 @@
 var gulp = require('gulp'),
-    webpack = require('webpack'),
-    gulpWebpack = require('webpack-stream'),
-    webpackConfig = require('./webpack.config'),
     gulpLoadPlugins = require('gulp-load-plugins'),
-    plugins = gulpLoadPlugins();
+    plugins = gulpLoadPlugins(),
+    browserSync = require ('browser-sync'),
+    webpack = require('webpack'),
+    webpackStream = require('webpack-stream'),
+    webpackConfig = require('./webpack.config'),
+    webpackDevMiddleware = require('webpack-dev-middleware'),
+    webpackHotMiddleware = require('webpack-hot-middleware');
 
 
 //use webpack to manage all the resources in src/
-gulp.task('webpack', ['clean'], function(){
+gulp.task('webpack', function(){
   gulp.src('./src/index.html').pipe(gulp.dest('./prebuild'));
   return gulp.src('./src/index.js')
-    .pipe(gulpWebpack(webpackConfig))
+    .pipe(webpackStream(webpackConfig, webpack))
     .pipe(gulp.dest('prebuild/'));
 });
 
@@ -42,9 +45,49 @@ gulp.task('css', ['webpack'], function() {
     .pipe(gulp.dest('build'));
 });
 
-gulp.task('browser-sync', function() {
-
+gulp.task('server', function(){
+  browserSync({
+    server: {
+      baseDir: './prebuild'
+    },
+    files: [
+      'prebuild/*.html',
+      'prebuild/css/*.css',
+      'prebuild/js/*.js'
+    ]
+  });
 });
+
+gulp.task('watch', function(){
+  gulp.watch('src/**/*.*', ['webpack']);
+});
+
+// gulp.task('hot', function() {
+//   var bundler = webpack(webpackConfig);
+//   browserSync({
+//     proxy: {
+//       target: 'localhost:3000',
+//       middleware: [
+//         webpackDevMiddleware(bundler, {
+//           publicPath: webpackConfig.output.publicPath,
+//           // stats: webpackConfig.stats,
+//           hot: true,
+//           historyApiFallback: true
+//         }),
+//         webpackHotMiddleware(bundler),
+//       ]
+//     },
+//     files: [
+//       'src/*.*',
+//       'src/templates/*.*',
+//       'src/components/**/*.*',
+//       'src/css/**/*.*',
+//       'src/js/**/*.*'
+//     ]
+//   });
+// });
+
+
 
 gulp.task('clean', function(){
   return gulp.src(['build/*', 'prebuild/*'], {read: false})

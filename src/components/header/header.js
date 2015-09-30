@@ -3,7 +3,9 @@ require('./header.scss');
 var Header = React.createClass({
   render: function() {
     return (
-      <div className="reHeader"></div>
+      <div className="reHeader">
+        <h1>Welcome webpack-starter</h1>
+      </div>
     );
   }
 });

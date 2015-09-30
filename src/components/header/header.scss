@@ -1,3 +1,22 @@
+
+$red:  #CC3343;
 #header {
-  
+  position: relative;
+  top: 0;
+  height: 70px;
+  line-height: 70px;
+  width: 100%;
+  background-color: $red;
+
+  .reHeader {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    h1 {
+      color: #EEE;
+      font-size: 2em;
+    }
+  }
 }

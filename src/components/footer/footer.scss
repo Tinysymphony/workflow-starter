@@ -1,3 +1,15 @@
 #footer {
-  
+  position: relative;
+  background-color: #333;
+  position: absolute;
+  min-height: 70px;
+  width: 100%;
+  bottom: 0;
+  margin-bottom: 0;
+  text-align: center;
+  p {
+    margin-top: 20px;
+    position: relative;
+    color: #CCC;
+  }
 }

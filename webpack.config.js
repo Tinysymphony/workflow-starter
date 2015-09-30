@@ -24,7 +24,7 @@ module.exports = {
       loader: ExtractCssPlugin.extract('style', 'css!autoprefixer')
     }, {
       test: /\.scss$/,
-      loader: ExtractCssPlugin.extract('style', 'css!sass')
+      loader: ExtractCssPlugin.extract('style', 'css!autoprefixer!sass')
     }, {
       test: /\.woff$/,
       loader: 'url?limit=100000'
@@ -37,5 +37,7 @@ module.exports = {
     // new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new ExtractCssPlugin("css/[name].bundle.css", {allChunks: true})
-  ]
+  ],
+  stats: {
+  }
 };
