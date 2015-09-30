@@ -87,8 +87,6 @@ gulp.task('watch', function(){
 //   });
 // });
 
-
-
 gulp.task('clean', function(){
   return gulp.src(['build/*', 'prebuild/*'], {read: false})
     .pipe(plugins.clean());
@@ -111,6 +109,7 @@ gulp.task('help', function(){
   console.log('  js       #build all js files /prebuild ---> build/ ');
   console.log('  css      #build all css files /prebuild ---> build/');
   console.log('  build    #do all the works');
+    "gulp-concat": "^2.6.0",
   console.log('  clean    #clear directories such as prebuild/ & build/');
   console.log('---------------------------------------------------------------');
 });
