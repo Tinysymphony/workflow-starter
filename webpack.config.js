@@ -31,7 +31,7 @@ module.exports = {
     }]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.woff', '.png', '.jpg']
+    extensions: ['', '.js', '.jsx', '.woff', '.png', '.jpg', '.scss', '.css']
   },
   plugins: [
     // new webpack.HotModuleReplacementPlugin(),

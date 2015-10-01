@@ -1,6 +1,6 @@
-###Webpack-Starter
+###Workflow-Starter
 
-Build the front-end development environment with Webpack-Starter~
+Build the front-end development environment with Workflow-Starter~
 
 It can be a template for building projects.
 
@@ -13,27 +13,15 @@ workflow goes in this way: src ---> prebuild ---> build
 
 ```bash
 
-git clone https://github.com/Tinysymphony/webpack-starter
+git clone https://github.com/Tinysymphony/workflow-starter
 cd webpack-starter
 
-#get the absolute work path
-export StarterPath=$(pwd);
-#create a temporary command
-alias webpack-starter="
-cp $StarterPath/webpack* .;
-cp $StarterPath/package.json .;
-cp $StarterPath/gulpfile* .;
-cp $StarterPath/.gitignore .;
-cp $StarterPath/.npmignore .;
-cp $StarterPath/README.md .;
-cp -r $StarterPath/src .;
-mkdir build prebuild;
-git init;
-"
+#get the workflow-starter command
+read a < starter.sh && eval $a
 
 #find a place to locate your project
 mkdir yourApp && cd yourApp
-webpack-starter
+workflow-starter
 
 #about 120+M
 npm install
@@ -77,7 +65,7 @@ Now you can try your browser to render your page. It can be a safari on your ipa
 
 Enjoy it.
 
-###Webpack-starter 文档中文版
+###Workflow-Starter 文档中文版
 
 这是用于构建单页面应用前端开发环境的工作流，或者说工具集合，按自己的需求整合了一些轮子。
 
@@ -88,28 +76,17 @@ Enjoy it.
 ####使用说明书
 
 ```bash
-git clone https://github.com/Tinysymphony/webpack-starter
+git clone https://github.com/Tinysymphony/workflow-starter
 cd webpack-starter
 
-#获得路径
-export StarterPath=$(pwd);
-#复制命令
-alias webpack-starter="
-cp $StarterPath/webpack* .;
-cp $StarterPath/package.json .;
-cp $StarterPath/gulpfile* .;
-cp $StarterPath/.gitignore .;
-cp $StarterPath/.npmignore .;
-cp $StarterPath/README.md .;
-cp -r $PATH/src .;
-mkdir build prebuild;
-git init;
-"
+#获得工作流初始化命令workflow-starter
+read a < starter.sh && eval $a
 
 #找个地方放置自己的工程
 mkdir yourApp && cd yourApp
-webpack-starter
+workflow-starter
 
+#大概会产生120M左右的node_modules
 npm install
 
 #确保全局安装的gulp会方便很多

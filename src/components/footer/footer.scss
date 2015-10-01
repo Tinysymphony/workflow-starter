@@ -1,3 +1,5 @@
+@import "../../css/global.scss";
+
 #footer {
   position: relative;
   background-color: #333;
@@ -10,6 +12,6 @@
   p {
     margin-top: 20px;
     position: relative;
-    color: #CCC;
+    color: $back;
   }
 }

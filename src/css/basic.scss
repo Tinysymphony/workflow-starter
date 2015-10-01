@@ -1,10 +1,9 @@
 
 /* defination of basic colors */
-$back: #E7E5E3;
-$red:  #CC3343;
 
-@import url("article/article.scss");
-@import url("button/button.scss");
+@import "./global.scss";
+@import "article/article.scss";
+@import "button/button.scss";
 
 html, body, div, header, footer, h1, h2, h3 ,h4, p, section{
   padding: 0;

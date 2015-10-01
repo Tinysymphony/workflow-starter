@@ -1,6 +1,7 @@
 //require other resources
 
 // require('./css/' + /^(.+\/)*.+\..+$/);
-require('./css/basic.scss');
+
+require('./css/basic');
 
 require('./js/basic.js');
