@@ -1,7 +1,9 @@
 var gulp = require('gulp'),
+    watch = require('gulp-watch'),
     gulpLoadPlugins = require('gulp-load-plugins'),
     plugins = gulpLoadPlugins(),
     browserSync = require ('browser-sync'),
+    pngquant = require('imagemin-pngquant'),
     webpack = require('webpack'),
     webpackStream = require('webpack-stream'),
     webpackConfig = require('./webpack.config'),
@@ -32,12 +34,28 @@ gulp.task('js', ['webpack'],  function() {
 });
 
 //process all the css file in prebuild/
-gulp.task('css', ['webpack'], function() {
-  console.log(process.cwd());
+gulp.task('css', ['webpack', 'img'], function() {
+  var mapFile = gulp.src("./build/rev-manifest.json");
   return gulp.src('./prebuild/css/*.css')
     .pipe(plugins.minifyCss())
+    .pipe(plugins.revReplace({manifest: mapFile}))
     .pipe(plugins.rev())
     .pipe(gulp.dest('build/css'))
+    .pipe(plugins.rev.manifest('build/rev-manifest.json', {
+      base: process.cwd() + '/build',
+      merge: true
+    }))
+    .pipe(gulp.dest('build'));
+});
+
+gulp.task('img', ['webpack'], function(){
+  return gulp.src('./prebuild/img/*.*')
+    .pipe(plugins.imagemin({
+      progressive: true,
+      use: [pngquant({quality: '70-80'})]
+    }))
+    .pipe(plugins.rev())
+    .pipe(gulp.dest('build/img'))
     .pipe(plugins.rev.manifest('build/rev-manifest.json', {
       base: process.cwd() + '/build',
       merge: true
@@ -92,14 +110,16 @@ gulp.task('clean', function(){
     .pipe(plugins.clean());
 });
 
-gulp.task('replace', ['css', 'js'], function(){
+gulp.task('replace', ['css', 'js', 'img'], function(){
   var mapFile = gulp.src("./build/rev-manifest.json");
   return gulp.src('./prebuild/index.html')
     .pipe(plugins.revReplace({manifest: mapFile}))
     .pipe(gulp.dest('build'));
 });
 
-gulp.task('build', ['webpack', 'js', 'css', 'replace']);
+gulp.task('build', ['clean'], function(){
+  gulp.start('webpack', 'img', 'js', 'css', 'replace');
+});
 
 gulp.task('help', function(){
   console.log('---------------------------------------------------------------');
@@ -108,6 +128,7 @@ gulp.task('help', function(){
   console.log('  webpack  #use webpack to pack all files src/ ---> prebuild/');
   console.log('  js       #build all js files /prebuild ---> build/ ');
   console.log('  css      #build all css files /prebuild ---> build/');
+  console.log('  img       #build all picture files /prebuild ---> build/ ');
   console.log('  build    #do all the works');
   console.log('  clean    #clear directories such as prebuild/ & build/');
   console.log('---------------------------------------------------------------');
