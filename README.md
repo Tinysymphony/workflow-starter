@@ -134,4 +134,4 @@ gulp server
 * source-map
 * js调试工具
 
-更详细的介绍请见我的博客：[Webpack+Gulp构建开发结构](http://www.wytiny.me/2015/09/29/Webpack-Gulp%E6%9E%84%E5%BB%BA%E5%BC%80%E5%8F%91%E7%BB%93%E6%9E%84/)
+更详细的介绍请见我的博客：[Webpack+Gulp构建开发结构](http://www.wytiny.com/2015/09/29/Webpack-Gulp%E6%9E%84%E5%BB%BA%E5%BC%80%E5%8F%91%E7%BB%93%E6%9E%84/)
